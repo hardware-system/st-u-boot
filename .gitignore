@@ -36,6 +36,8 @@
 # Build tree
 /build-*
 
+build/
+deploy/
 #
 # Top-level generic files
 #
