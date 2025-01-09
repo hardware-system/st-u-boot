@@ -165,10 +165,12 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		compatible = "snps,dwmac-mdio";
+
 		phy0_eth1: ethernet-phy@1 {
 			compatible = "ethernet-phy-ieee802.3-c22";
 			reset-gpios =  <&gpioa 6 GPIO_ACTIVE_LOW>;
 			reg = <1>;
+			wakeup-source;
 		};
 	};
 };

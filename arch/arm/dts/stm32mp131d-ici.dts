@@ -71,13 +71,6 @@
 		};
 	};
 
-	sram {
-		dma_pool: dma-sram@0 {
-			reg = <0x0 0x4000>;
-			pool;
-		};
-	};
-
 	vddcore: vddcore {
         compatible = "regulator-fixed";
         regulator-name = "vddcore";
@@ -137,14 +130,6 @@
 	status = "okay";
 };
 
-&dma1 {
-	sram = <&dma_pool>;
-};
-
-&dma2 {
-	sram = <&dma_pool>;
-};
-
 &dts {
 	status = "okay";
 };
@@ -165,10 +150,12 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		compatible = "snps,dwmac-mdio";
+
 		phy0_eth1: ethernet-phy@1 {
 			compatible = "ethernet-phy-ieee802.3-c22";
 			reset-gpios =  <&gpioa 6 GPIO_ACTIVE_LOW>;
 			reg = <1>;
+			wakeup-source;
 		};
 	};
 };
@@ -280,7 +267,7 @@
 		pins1 {
 			pinmux = <STM32_PINMUX('A', 11, AF11)>, /* ETH1_CLK */
 					 <STM32_PINMUX('B', 11, AF11)>, /* ETH1_TX_EN */
-					 <STM32_PINMUX('A', 1, AF11)>, /* ETH1_REF_CLK */
+					 <STM32_PINMUX('D', 7, AF10)>, /* ETH1_REF_CLK */
 					 <STM32_PINMUX('G', 2, AF11)>, /* ETH1_MDC */
 					 <STM32_PINMUX('G', 13, AF11)>, /* ETH1_TXD0 */
 					 <STM32_PINMUX('G', 14, AF11)>; /* ETH1_TXD1 */
@@ -295,7 +282,7 @@
 			bias-disable;
 		};
 		pins3 {
-			pinmux = <STM32_PINMUX('A', 2, AF11)>; /* ETH1_MDIO */
+			pinmux = <STM32_PINMUX('G', 3, AF11)>; /* ETH1_MDIO */
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <0>;
@@ -307,11 +294,11 @@
 			pinmux = <STM32_PINMUX('A', 7, ANALOG)>, /* ETH1_CRS_DV */
 					 <STM32_PINMUX('A', 11, ANALOG)>, /* ETH1_CLK */
 					 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH1_TX_EN */
-					 <STM32_PINMUX('A', 1, ANALOG)>, /* ETH1_REF_CLK */
 					 <STM32_PINMUX('C', 4, ANALOG)>, /* ETH1_RXD0 */
 					 <STM32_PINMUX('C', 5, ANALOG)>, /* ETH1_RXD1 */
+					 <STM32_PINMUX('D', 7, ANALOG)>, /* ETH1_REF_CLK */
 					 <STM32_PINMUX('G', 2, ANALOG)>, /* ETH1_MDC */
-					 <STM32_PINMUX('A', 2, ANALOG)>, /* ETH1_MDIO */
+					 <STM32_PINMUX('G', 3, ANALOG)>, /* ETH1_MDIO */
 					 <STM32_PINMUX('G', 13, ANALOG)>, /* ETH1_TXD0 */
 					 <STM32_PINMUX('G', 14, ANALOG)>; /* ETH1_TXD1 */
 		};
