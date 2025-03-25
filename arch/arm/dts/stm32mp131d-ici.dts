@@ -214,7 +214,8 @@
 &usbotg_hs {
 	phys = <&usbphyc_port1 0>;
 	phy-names = "usb2-phy";
-	dr_mode = "otg";
+	dr_mode = "peripheral";                          /* could be "host", see USB generic bindings */
+	u-boot,force-b-session-valid;
 	pinctrl-0 = <&usbotg_hs_pins_a>;
 	pinctrl-names = "default";
 	vbus-supply = <&vbus_otg>;
