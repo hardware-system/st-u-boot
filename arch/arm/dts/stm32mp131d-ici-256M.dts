@@ -15,7 +15,7 @@
 #include "stm32mp13-pinctrl-ici.dtsi"
 
 / {
-	model = "STM32MP131D-ICI Discovery Board";
+	model = "STM32MP131D-ICI-256M Discovery Board";
 	compatible = "st,stm32mp131d-ici", "st,stm32mp131";
 
 	aliases {
